@@ -1,16 +1,19 @@
 package com.example.ecommerce.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.ecommerce.ItemActivity;
 import com.example.ecommerce.R;
 import com.example.ecommerce.models.Category;
 
@@ -38,6 +41,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(categories.get(position).getImage_url()).into(holder.categoryImage);
         holder.categoryName.setText(categories.get(position).getName());
+
+        holder.categoryContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ItemActivity.class);
+                intent.putExtra("type",  categories.get(position).getType());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -49,11 +61,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         private ImageView categoryImage;
         private TextView categoryName;
+        private LinearLayout categoryContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryImage = itemView.findViewById(R.id.imgCategoryImage);
             categoryName = itemView.findViewById(R.id.tvCategoryName);
+            categoryContainer = itemView.findViewById(R.id.categoryContainer);
         }
     }
 
