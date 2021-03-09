@@ -22,7 +22,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Featured"
+                    android:text="Category"
                     android:textSize="18sp"
                     />
                 <TextView
@@ -37,14 +37,12 @@
                 android:id="@+id/recyclerViewCategory"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_height="250dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:layout_marginTop="20dp"
             >
             <RelativeLayout
@@ -67,9 +65,10 @@
                     />
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFeatured"
                 android:layout_marginLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,7 +98,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 

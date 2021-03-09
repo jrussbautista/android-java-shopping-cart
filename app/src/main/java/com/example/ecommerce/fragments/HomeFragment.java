@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.adapters.CategoryAdapter;
+import com.example.ecommerce.adapters.FeatureAdapter;
 import com.example.ecommerce.models.Category;
+import com.example.ecommerce.models.Feature;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -47,6 +49,10 @@ public class HomeFragment extends Fragment {
     private List<Category> categories;
     private CategoryAdapter categoryAdapter;
     private RecyclerView recyclerViewCategory;
+
+    private List<Feature> features;
+    private FeatureAdapter featureAdapter;
+    private  RecyclerView recyclerViewFeature;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -91,6 +97,13 @@ public class HomeFragment extends Fragment {
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         recyclerViewCategory.setAdapter(categoryAdapter);
 
+        features = new ArrayList<>();
+        featureAdapter = new FeatureAdapter(getContext(), features);
+        recyclerViewFeature = view.findViewById(R.id.recyclerViewFeatured);
+        recyclerViewFeature.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        recyclerViewFeature.setAdapter(featureAdapter);
+
+
         db.collection("categories")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -101,6 +114,23 @@ public class HomeFragment extends Fragment {
                                 Category category = document.toObject(Category.class);
                                 categories.add(category);
                                 categoryAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getContext(), "Error getting documents", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        db.collection("features")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Feature feature = document.toObject(Feature.class);
+                                features.add(feature);
+                                featureAdapter.notifyDataSetChanged();
                             }
                         } else {
                             Toast.makeText(getContext(), "Error getting documents", Toast.LENGTH_LONG).show();

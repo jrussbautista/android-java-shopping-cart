@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginRight="20dp"
+    android:id="@+id/productContainer"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:scaleType="fitXY"
+        android:layout_height="150dp"
+        android:id="@+id/imgProduct"
+        app:srcCompat="@drawable/welcome"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Lorem ipsum"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvProductName"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="100$"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvProductPrice"
+        android:textSize="16sp"
+        />
+
+</LinearLayout>
